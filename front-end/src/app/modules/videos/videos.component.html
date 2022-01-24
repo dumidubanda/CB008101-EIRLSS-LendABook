@@ -1,0 +1,67 @@
+<div class="row pageHeader">
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8" *ngIf="userInfo.admin">
+    <div class="box">
+      <button color="primary" mat-raised-button (click)="videosService.navigate('../videos/form')"><mat-icon>add</mat-icon> Add Video </button>
+      <button color="primary" mat-raised-button (click)="videosService.navigate('../videos/categories')" style="margin-left: 15px;"><mat-icon>list</mat-icon> Categories </button>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" *ngIf="videos && videos.length > 0">
+    <div class="box">
+      <mat-form-field style="width: 100%">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [formControl]="searchCtrl" (keydown.enter)="search($event)"/>
+        <button *ngIf="searchCtrl.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchCtrl.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+<p style="text-align: center" *ngIf="!videos || videos.length == 0">There Is No Videos Yet!</p>
+
+<div class="row pageContainer">
+  <ng-template ngFor let-video [ngForOf]="videos" let-i="index">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-lg-3" *ngIf="!videosService.isReserved(video)">
+      <div class="box cardContainer">
+        <mat-card class="cardContainer">
+          <mat-card-header>
+            <mat-card-title>{{video.name}}</mat-card-title>
+            <mat-card-subtitle><span style="font-weight: bold; color: red">Director : </span> {{video.director}}</mat-card-subtitle>
+          </mat-card-header>
+          <video style="max-width: 100%;" >
+            <source [src]="videosService.getVideoUrl(video)" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <mat-card-content>
+            <mat-chip-list>
+              <mat-chip>price : {{video.price}} {{APP_CURRENCY}}</mat-chip>
+              <mat-chip>language : {{video.language}}</mat-chip>
+            </mat-chip-list>
+            <button color="primary" mat-button type="button" style="margin-top: 5px;" (click)="videosService.navigate('../videos/video', video.id)">
+              More Details >
+            </button>
+
+          </mat-card-content>
+          <mat-card-actions >
+            <button color="primary" mat-raised-button *ngIf="videosService.ableForReserveVideos()" (click)="reserve(video)">
+              <mat-icon>check</mat-icon> Reserve
+            </button>
+
+            <button color="warn"  mat-mini-fab *ngIf="userInfo.admin" style="margin-right: 10px;" matTooltip="Delete" (click)="delete(video, i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+            <button color="primary"  mat-mini-fab *ngIf="userInfo.admin" matTooltip="Edit" (click)="videosService.navigate('../videos/form', video.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+

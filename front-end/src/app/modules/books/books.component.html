@@ -1,0 +1,62 @@
+
+<div class="row pageHeader">
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8" *ngIf="userInfo.admin">
+      <button color="primary" mat-raised-button (click)="booksService.navigate('../books/form')"><mat-icon>add</mat-icon> Add Book </button>
+      <button color="primary" mat-raised-button (click)="booksService.navigate('../books/categories')" style="margin-left: 15px;"><mat-icon>list</mat-icon> Categories </button>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" *ngIf="books && books.length > 0">
+      <mat-form-field style="width: 100%">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [formControl]="searchCtrl" (keydown.enter)="search($event)"/>
+        <button *ngIf="searchCtrl.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchCtrl.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+  </div>
+</div>
+
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+<p style="text-align: center" *ngIf="!books || books.length == 0">There Is No Book Yet!</p>
+<div class="row pageContainer">
+  <ng-template ngFor let-book [ngForOf]="books" let-i="index">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-lg-3" *ngIf="!booksService.isReserved(book)">
+        <mat-card class="cardContainer">
+          <mat-card-header>
+            <mat-card-title>{{book.name}}</mat-card-title>
+            <mat-card-subtitle><span style="font-weight: bold; color: red">Author : </span> {{book.author}}</mat-card-subtitle>
+          </mat-card-header>
+
+          <img mat-card-image [src]="booksService.getImgUrl(book)" alt="coverImage" class="coverImage"/>
+
+          <mat-card-content>
+            <mat-chip-list>
+              <mat-chip style="font-weight: bold">{{book.price}} {{APP_CURRENCY}}</mat-chip>
+              <mat-chip>language : {{book.language}}</mat-chip>
+            </mat-chip-list>
+
+            <button color="primary" mat-button type="button" style="margin-top: 5px;" (click)="booksService.navigate('../books/book', book.id)">
+              More Details >
+            </button>
+
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button color="primary" mat-raised-button type="button" *ngIf="booksService.ableForReserveBooks()" (click)="reserve(book)">
+              <mat-icon>check</mat-icon> Reserve
+            </button>
+
+            <button color="warn" type="button"  mat-mini-fab *ngIf="userInfo.admin" style="margin-right: 10px;" matTooltip="Delete" (click)="delete(book, i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+            <button color="primary"  mat-mini-fab *ngIf="userInfo.admin" matTooltip="Edit" (click)="booksService.navigate('../books/form', book.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+    </div>
+  </ng-template>
+</div>
+
+

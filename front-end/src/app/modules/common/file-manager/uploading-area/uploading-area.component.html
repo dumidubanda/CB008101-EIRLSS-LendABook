@@ -1,0 +1,57 @@
+<div id="dropZoneArea" ng2FileDrop
+     [ngClass]="{'nv-file-over': hasBaseDropZoneOver, 'disabledInput': readonly}"
+     [uploader]="uploader"
+     (fileOver)="fileOverBase($event)"
+     (onFileDrop)="onFileSelected($event)"
+     (click)="onAreaClick()">
+  Drop Content Here
+</div>
+
+<!--Multiple-->
+<input type="file" style="visibility: hidden;" #fileInput ng2FileSelect
+       [uploader]="uploader"
+       (onFileSelected)="onFileSelected($event)" />
+
+
+<div class="uploaderFiles" *ngIf="(uploader.queue && uploader.queue.length >0) || (filesList && filesList.length >0)">
+
+  <!--new files-->
+  <div *ngIf="uploader.queue">
+    <div class="fileCard animated zoomIn" *ngFor="let item of uploader.queue; let i=index">
+      <div class="fileCardContent">
+          <h4>{{ item?.file?.name }}</h4>
+          <button type="button" mat-icon-button color="warn"
+                  [disabled]="loading"
+                  (click)="deleteQueueFile(item, i)"
+                  matTooltip="delete">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button type="button" mat-icon-button color="primary" style="margin-right: 30px;"
+                  [disabled]="loading" (click)="downloadFile(filesQueue[i])"
+                  matTooltip="view">
+            <mat-icon>visibility</mat-icon>
+          </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!--already uploaded-->
+  <div *ngIf="filesList">
+    <div class="fileCard animated zoomIn" *ngFor="let item of filesList; let i=index">
+      <div class="fileCardContent">
+        <h4><b>{{ item.fileName }}</b></h4>
+        <button type="button" mat-icon-button color="warn" *ngIf="!readonly"
+                [disabled]="loading"
+                (click)="deleteFile(item, i)" matTooltip="delete">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button type="button" mat-icon-button color="primary" style="margin-right: 30px;"
+                [disabled]="loading" (click)="downloadFile(filesList[i])"
+                matTooltip="view">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

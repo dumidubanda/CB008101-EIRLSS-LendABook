@@ -1,0 +1,107 @@
+<div class="pageHeader">
+  <h2>Add New Video</h2>
+  <span class="example-spacer"></span>
+  <button color="primary" mat-raised-button type="button" (click)="submit()" [disabled]="formGroup && formGroup.invalid">Save</button>
+  <button color="warn" mat-raised-button style="margin-left: 15px" *ngIf="videoInfo && videoInfo.id" (click)="delete()">Delete</button>
+</div>
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+<form accept-charset="UTF-8" role="form" [formGroup]="formGroup" (submit)="submit()" *ngIf="formGroup">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Name</mat-label><input matInput type="text" formControlName="name"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Language</mat-label><input matInput type="text" formControlName="language"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Price</mat-label><input matInput type="number" formControlName="price"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Dimensions</mat-label><input matInput type="number" formControlName="dimensions"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Copies</mat-label><input matInput type="number" formControlName="copies"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Duration</mat-label><input matInput type="number" formControlName="duration"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Watching Age</mat-label><input matInput type="number" formControlName="watchingAge"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Author</mat-label><input matInput type="text" formControlName="author"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Publisher</mat-label><input matInput type="text" formControlName="publisher"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Publishing Date</mat-label>
+          <input matInput [matDatepicker]="datepicker" formControlName="publishingDate">
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Director</mat-label><input matInput type="text" formControlName="director"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Country</mat-label><input matInput type="text" formControlName="country"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option [value]="category.id" *ngFor="let category of categories;">{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="box formContainer">
+        <app-uploading-area (fileEvent)="handleFilesEvents($event)"></app-uploading-area>
+      </div>
+    </div>
+  </div>
+</form>

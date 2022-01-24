@@ -1,0 +1,117 @@
+<div class="pageHeader">
+  <h2> Manage Reservations</h2>
+</div>
+
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Books">
+    <p style="text-align: center" *ngIf="!bookReservations || bookReservations.length == 0">There Is No Book Reservations Yet!</p>
+    <div class="tableContainer" *ngIf="bookReservations && bookReservations.length > 0">
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilterBooks($event)" placeholder="Category Name" #input>
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSourceBooks" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- USER Name Column -->
+        <ng-container matColumnDef="user" *ngIf="userInfo.admin">
+          <th mat-header-cell *matHeaderCellDef> User Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.user.firstName + ' ' + element.user.lastName}} </td>
+        </ng-container>
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="book">
+          <th mat-header-cell *matHeaderCellDef> Book Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.book.name}} </td>
+        </ng-container>
+
+        <!-- action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element; let i = index;">
+            <div class="example-button-container">
+              <button mat-mini-fab color="warn" aria-label="deletebtn" (click)="deleteItem(element, i, 'book')"
+                      matTooltip="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-mini-fab color="primary" aria-label="downloadBtn" style="margin-left: 10px;"
+                      matTooltip="Read"
+                      (click)="downloadFile(element, 'book')">
+                <mat-icon>explore</mat-icon>
+              </button>
+              <button mat-raised-button="" color="accent" aria-label="downloadBtn" style="margin-left: 10px;"
+                      (click)="navigate('../books/book', element.book.id)">
+                Open
+              </button>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsBooks"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsBooks;"></tr>
+      </table>
+    </div>
+  </mat-tab>
+
+
+
+
+
+  <mat-tab label="Videos">
+    <p style="text-align: center" *ngIf="!videoReservations || videoReservations.length == 0">There Is No Video Reservations Yet!</p>
+    <div class="tableContainer" *ngIf="videoReservations && videoReservations.length > 0">
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilterVideos($event)" placeholder="Category Name" #input>
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSourceVideos" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- USER Name Column -->
+        <ng-container matColumnDef="user" *ngIf="userInfo.admin">
+          <th mat-header-cell *matHeaderCellDef> User Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.user.firstName + ' ' + element.user.lastName}} </td>
+        </ng-container>
+
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="video">
+          <th mat-header-cell *matHeaderCellDef> Video Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.video.name}} </td>
+        </ng-container>
+        <!-- action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element; let i = index;">
+            <div class="example-button-container">
+              <button mat-mini-fab color="warn" aria-label="deletebtn" (click)="deleteItem(element, i, 'video')"
+                      matTooltip="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-mini-fab color="primary" aria-label="downloadBtn" style="margin-left: 10px;"
+                      matTooltip="Read"
+                      (click)="downloadFile(element, 'video')">
+                <mat-icon>explore</mat-icon>
+              </button>
+              <button mat-raised-button="" color="accent" aria-label="downloadBtn" style="margin-left: 10px;"
+                      (click)="navigate('../videos/video', element.video.id)">
+                Open
+              </button>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsVideos"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsVideos;"></tr>
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+

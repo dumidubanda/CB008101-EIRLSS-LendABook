@@ -1,0 +1,7 @@
+.cardContainer{
+  cursor: pointer;
+}
+
+.cardContainer.selected{
+  border: 2px solid #000;
+}

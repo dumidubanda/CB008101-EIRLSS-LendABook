@@ -1,0 +1,10 @@
+<div class="sideMenuContainer">
+   <div>
+     <mat-selection-list #shoes [multiple]="false">
+       <mat-list-option *ngFor="let item of sideMenu" (click)="navigate(item.path)">
+         <mat-icon mat-list-icon><img [src]="item.icon" alt="" class="itemIcon"/></mat-icon>
+         <div mat-line>{{item.title}}</div>
+       </mat-list-option>
+     </mat-selection-list>
+   </div>
+</div>

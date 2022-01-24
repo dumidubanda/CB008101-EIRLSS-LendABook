@@ -1,0 +1,72 @@
+
+
+html, body { overflow: hidden !important; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.pageContainer{
+  margin-bottom: 100px;
+}
+.cardContainer{margin-bottom: 15px; cursor: pointer}
+.pageHeader{
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #d5cccc;
+  display: flex;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: #dd594f;
+}
+.formContainer{
+  padding: 10px 0;
+}
+.tableContainer{
+  padding: 20px;
+  background: #fff8f8;
+  border: 1px solid #d5cccc;
+}
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.imgPlacholder{
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  height: 200px;
+  width: 200px;
+  cursor: pointer;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.coverImage{
+  height: 150px;
+}
+.mat-card-title{
+  text-transform: capitalize;
+}
+.dataItem{text-transform: capitalize; position: relative; display: block; margin-bottom: 10px; font-size: 15px;}
+.dataItem > span:nth-child(1){font-weight: bold;}
+
+
+
+
+.commentsContainer{
+  margin-top: 30px;
+  border: 1px solid #d5cccc;
+  padding: 10px;
+  margin-bottom: 20%;
+  background: #F5F5F5;
+}
+.commentSection:not(:last-child){
+  border-bottom:  1px solid #d5cccc;
+  padding: 10px;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+.commentSection > img{width: 50px; height: 50px;}
+.commentSection > span{font-weight: 600; position: relative; top: -20px; margin-left: 10px;}

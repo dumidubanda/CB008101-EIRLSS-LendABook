@@ -1,0 +1,27 @@
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+<form accept-charset="UTF-8" role="form" [formGroup]="formGroup" (submit)="submit()" *ngIf="formGroup" class="loginForm">
+
+  <img [src]="'assets/img/logo.jpeg'" alt="logo" class="logoimg" />
+  <h1 class="logoTest">Lend a Book</h1>
+  <br>
+  <h2 class="logoTest">Welcome</h2>
+
+  <div class="formContainer">
+    <mat-form-field style="width: 100%">
+          <mat-label>Email</mat-label><input matInput type="text" formControlName="email"/></mat-form-field>
+  </div>
+
+  <div class="formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Password</mat-label><input matInput [type]="hide ? 'password' : 'text'" formControlName="password"/>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+  </div>
+  <div class="">
+      <button color="primary" mat-raised-button [disabled]="formGroup.invalid"><mat-icon>check</mat-icon> Login</button>
+      <button color="primary" mat-raised-button style="margin-left: 15px;" color="accent"
+              (click)="navigate('../register')"><mat-icon>add</mat-icon> Register</button>
+  </div>
+</form>

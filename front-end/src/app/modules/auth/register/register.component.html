@@ -1,0 +1,72 @@
+<div style="padding: 20px;">
+  <div class="pageHeader">
+    <br/>
+    <h2>Register Here!</h2>
+  </div>
+  <mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+  <form accept-charset="UTF-8" role="form" [formGroup]="formGroup" (submit)="submit()" *ngIf="formGroup">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="box formContainer">
+          <mat-form-field style="width: 100%">
+            <mat-label>First Name</mat-label><input matInput type="text" formControlName="firstName"/></mat-form-field>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="box formContainer">
+          <mat-form-field style="width: 100%">
+            <mat-label>Last Name</mat-label><input matInput type="text" formControlName="lastName"/></mat-form-field>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="box formContainer">
+          <mat-form-field style="width: 100%">
+            <mat-label>Email</mat-label><input matInput type="text" formControlName="email"/></mat-form-field>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="box formContainer">
+          <mat-form-field style="width: 100%">
+            <mat-label>Password</mat-label><input matInput [type]="hide ? 'password' : 'text'" formControlName="password"/>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 style="font-weight: bold; color: red;">Select Your Plan:</h3>
+        <div class="row pageContainer" *ngIf="plans">
+          <div class="col-xs-12 col-sm-8 col-md-4 col-lg-3" *ngFor="let plan of plans">
+            <div class="box cardContainer">
+              <mat-card class="cardContainer" (click)="selectPlan(plan)" [ngClass]="{'selected': plan.selected}">
+                <mat-card-header style="display: block; border-bottom: 1px solid #C6C6C6; margin-bottom: 20px"><mat-card-title style="text-align: center">{{plan.name}}</mat-card-title></mat-card-header>
+                <!--<img mat-card-image-->
+                <!--[src]="book.coverImage || 'https://www.creativindie.com/wp-content/uploads/2012/07/stock-image-site-pinterest-graphic.jpg'"-->
+                <!--alt="coverImage" class="coverImage"/>-->
+                <mat-card-content>
+                  <mat-chip-list>
+                    <mat-chip color="primary" selected>Books : {{plan.books}}</mat-chip>
+                    <mat-chip color="warn" selected>Videos : {{plan.videos}}</mat-chip>
+                    <mat-chip>book Lend Duration : {{convertToWeeks(plan.bookLendDuration)}} </mat-chip>
+                    <mat-chip>video Lend Duration : {{convertToWeeks(plan.videokLendDuration)}} </mat-chip>
+                    <mat-chip>book Lend Charges : {{plan.bookLendCharges + APP_CURRENCY}} </mat-chip>
+                    <mat-chip>video Lend Charges : {{plan.videoLendCharges + APP_CURRENCY}}</mat-chip>
+                    <mat-chip>annualMembershipFee : {{plan.annualMembershipFee + APP_CURRENCY}}</mat-chip>
+                    <mat-chip>overdue Charges : {{plan.overdueCharges  + APP_CURRENCY +'/day'}}</mat-chip>
+                  </mat-chip-list>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <button color="primary" mat-raised-button [disabled]="formGroup.invalid"><mat-icon>check</mat-icon> Save</button>
+            <button color="primary" mat-raised-button style="margin-left: 15px;" color="accent"
+                    (click)="navigate('../')"> Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

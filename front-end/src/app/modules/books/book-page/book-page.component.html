@@ -1,0 +1,63 @@
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+<div class="pageHeader" *ngIf="!loading">
+  <h2>{{bookInfo.name}}</h2>
+  <span class="example-spacer"></span>
+</div>
+
+<div class="row" *ngIf="!loading">
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <img [src]="booksServiceService.getImgUrl(bookInfo)" alt="coverImage" style="width: 100%"/>
+    <button color="primary" mat-raised-button *ngIf="booksServiceService.ableForReserveBooks() && !booksServiceService.isReserved(bookInfo)" (click)="reserve()">
+      <mat-icon>check</mat-icon>  Reserve
+    </button>
+
+    <button color="warn"  mat-mini-fab *ngIf="userInfo.admin" class="btnMargin" matTooltip="Delete" (click)="delete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <button color="primary"  mat-mini-fab *ngIf="userInfo.admin" matTooltip="Edit" class="btnMargin" (click)="booksServiceService.navigate('../books/form', bookInfo.id)">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button color="primary"  mat-mini-fab *ngIf="userInfo.admin || booksServiceService.isReserved(bookInfo)" matTooltip="Open" (click)="openBook()">
+      <mat-icon>explore</mat-icon>
+    </button>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="dataItem"> <span>Price : </span><span>{{bookInfo.price}} {{APP_CURRENCY}}</span></div>
+    <div class="dataItem"> <span>Author : </span><span>{{bookInfo.author}}</span></div>
+    <div class="dataItem"> <span>Language : </span><span>{{bookInfo.language}}</span></div>
+    <div class="dataItem"> <span>Copies : </span><span>{{bookInfo.copies}}</span></div>
+    <div class="dataItem"> <span>Pages : </span><span>{{bookInfo.pages}}</span></div>
+    <div class="dataItem"> <span>Dimensions : </span><span>{{bookInfo.dimensions}}</span></div>
+    <div class="dataItem"> <span>Publisher : </span><span>{{bookInfo.publisher}}</span></div>
+    <div class="dataItem"> <span>Publishing Date : </span><span>{{bookInfo.publishingDate}}</span></div>
+    <div class="dataItem"> <span>Reading Age: </span><span>{{bookInfo.readingAge}}</span></div>
+    <div class="dataItem"> <span>Category: </span><span>{{bookInfo.category}}</span></div>
+  </div>
+
+</div>
+
+<div class="row commentsContainer" *ngIf="!loading">
+  <mat-progress-bar mode="query" *ngIf="loadingComments"></mat-progress-bar>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 commentSection" *ngFor="let comment of comments">
+    <img [src]="'assets/common/profile.png'" alt=""/>
+    <span> {{comment.firstName + ' '}} {{comment.lastName}} </span>
+    <p>{{comment.comment}}</p>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="formGroup && (booksServiceService.isReserved(bookInfo) || userInfo.admin)">
+    <form accept-charset="UTF-8" role="form" [formGroup]="formGroup" (submit)="submitComment()">
+      <mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput placeholder="Write Comment" formControlName="comment" style="height: 200px"></textarea>
+      </mat-form-field>
+      <button color="primary" mat-raised-button
+              (submit)="submitComment()"
+              [disabled]="formGroup.invalid || loadingComments"> Comment</button>
+    </form>
+  </div>
+</div>
+
+

@@ -1,0 +1,18 @@
+#dropZoneArea{
+  position: relative; display: block; width: 100%; height: 90px;
+  border: 1px dashed #4e4e4e;  background: #f7f5f5;  line-height: 90px;  text-align: center;  cursor: pointer;
+}
+#dropZoneArea:hover, .nv-file-over{background: #EDEDED; border-color: red;}
+.uploaderOperations{margin-top: 10px; }
+.uploaderOperations .mat-raised-button{border-radius: 20px; margin: 5px;}
+
+
+.uploaderFiles{  margin-top: -15px; position: relative; width: 100%; overflow: hidden;  display: block;  }
+.fileCard{
+  display: inline-block; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s;  width: auto;
+  float: left; margin: 10px; background: #fff;
+}
+.fileCardhover { box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);  }
+.fileCardContent{padding: 0 80px 0 10px; text-align: center;  word-break: break-all; font-weight: bold; position: relative;}
+.fileCardContent .mat-icon-button{ position: absolute; top: -8px;  right: 0 }
+

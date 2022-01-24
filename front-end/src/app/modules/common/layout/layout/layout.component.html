@@ -1,0 +1,15 @@
+<div *ngIf="userInfo && userInfo.id">
+  <app-header [appName]="'Library System'"
+              (sideMenuBtnEvent)="drawer.toggle(); openSide =!openSide"></app-header>
+  <mat-drawer-container autosize>
+    <mat-drawer #drawer  mode="side" [opened]="openSide">
+      <app-side-menu [sideMenu]="sideMenu"></app-side-menu>
+    </mat-drawer>
+    <div class="mainContent" [ngClass]="{'mainContentOpen': openSide}">
+      <ng-template [ngTemplateOutlet]="routerTemplate"></ng-template>
+    </div>
+  </mat-drawer-container>
+</div>
+<div *ngIf="!userInfo || !userInfo.id">
+  <ng-template [ngTemplateOutlet]="routerTemplate"></ng-template>
+</div>

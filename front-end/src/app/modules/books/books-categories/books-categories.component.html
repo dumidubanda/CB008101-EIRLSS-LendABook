@@ -1,0 +1,58 @@
+<div class="pageHeader">
+  <h2>Manage Book Category</h2>
+</div>
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+
+<form accept-charset="UTF-8" role="form" [formGroup]="formGroup" (submit)="submit()">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Name</mat-label><input matInput type="text" formControlName="name"/></mat-form-field>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="box formContainer">
+        <button color="primary" mat-raised-button [disabled]="formGroup.invalid"><mat-icon>check</mat-icon> Save</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="tableContainer" *ngIf="!loading">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Category Name" #input>
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element; let i = index;">
+        <div class="example-button-container">
+          <button mat-mini-fab color="warn" aria-label="deletebtn" (click)="deleteItem(element, i)" style="margin-right: 10px;">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <button mat-mini-fab color="primary" aria-label="editbtn" (click)="editItem(element, i)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

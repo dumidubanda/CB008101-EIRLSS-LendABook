@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" [ngClass]="{'fixedTop': fixedTop}">
+  <button mat-icon-button (click)="sideMenuBtnEvent.emit()" aria-label="menuIcon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span *ngIf="appName">{{appName}}</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button aria-label="profileIcon" [matMenuTriggerFor]="menu">
+    <img matRipple [src]="userInfo.imageUrl ||'assets/common/profile.png'" alt="" class="profileImg"/>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="navigate('../profile')"> <mat-icon mat-list-icon><img [src]="'assets/icons/profile.svg'" alt="" class="itemIcon"/></mat-icon> Profile</button>
+    <button mat-menu-item (click)="logout()"> <mat-icon mat-list-icon><img [src]="'assets/icons/logout.svg'" alt="" class="itemIcon"/></mat-icon> Logout</button>
+  </mat-menu>
+</mat-toolbar>

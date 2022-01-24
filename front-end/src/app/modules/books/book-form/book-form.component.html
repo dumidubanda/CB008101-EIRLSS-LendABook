@@ -1,0 +1,130 @@
+<mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
+
+<div class="pageHeader">
+  <h2>Add New Book</h2>
+  <span class="example-spacer"></span>
+  <button color="primary" mat-raised-button type="button" (click)="submit()" [disabled]="formGroup && formGroup.invalid">Save</button>
+  <button color="warn" mat-raised-button type="button" style="margin-left: 15px;" (click)="delete()" *ngIf="bookInfo && bookInfo.id">Delete</button>
+</div>
+
+<form accept-charset="UTF-8" role="form" [formGroup]="formGroup" (submit)="submit()"  *ngIf="formGroup">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="box formContainer">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="box">
+                <img [src]="coverImg || 'assets/img/image.png'" alt="image" class="imgPlacholder" (click)="onImgPlacholderClick()"/>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="box">
+
+              <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="box formContainer">
+                    <mat-form-field style="width: 100%"><mat-label>Name</mat-label><input matInput type="text" formControlName="name"/></mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                  <div class="box formContainer">
+                    <mat-form-field style="width: 100%">
+                      <mat-label>Language</mat-label><input matInput type="text" formControlName="language"/></mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="box formContainer">
+                    <mat-form-field style="width: 100%">
+                      <mat-label>Price</mat-label><input matInput type="number" formControlName="price"/></mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                  <div class="box formContainer">
+                    <mat-form-field style="width: 100%">
+                      <mat-label>Dimensions</mat-label><input matInput type="number" formControlName="dimensions"/></mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="box formContainer">
+                    <mat-form-field style="width: 100%">
+                      <mat-label>Copies</mat-label><input matInput type="number" formControlName="copies"/></mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="box formContainer">
+                    <mat-form-field style="width: 100%">
+                      <mat-label>Pages</mat-label><input matInput type="number" formControlName="pages"/></mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                  <div class="box formContainer">
+                    <mat-form-field style="width: 100%">
+                      <mat-label>Reading Age</mat-label><input matInput type="number" formControlName="readingAge"/></mat-form-field>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Author</mat-label><input matInput type="text" formControlName="author"/></mat-form-field>
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Publisher</mat-label><input matInput type="text" formControlName="publisher"/></mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Publishing Date</mat-label>
+          <input matInput [matDatepicker]="datepicker" formControlName="publishingDate">
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="box formContainer">
+        <mat-form-field style="width: 100%">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option [value]="category.id" *ngFor="let category of categories;">{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="box formContainer">
+        <app-uploading-area #appUploadingArea (fileEvent)="handleFilesEvents($event)"></app-uploading-area>
+      </div>
+    </div>
+  </div>
+</form>
+<input type="file" style="visibility: hidden;" #fileInputplacholder
+       (change)="onFileSelected($event)" />
