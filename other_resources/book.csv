@@ -1,0 +1,15 @@
+﻿id,dimensions,copies,language,name,price,publisher,publishing_date,pages,reading_age
+3,10,3,English,Book2,200,Publisher1,2021.01.20,10,13
+4,20,4,English,Book3,300,Publisher2,2021.01.21,20,12
+5,30,6,English,Book4,400,Publisher3,2021.01.22,30,11
+6,40,4,English,Book5,500,Publisher4,2021.01.23,40,10
+7,50,5,English,Book6,600,Publisher5,2021.01.24,50,9
+8,60,6,English,Book7,700,Publisher6,2021.01.25,60,8
+9,70,7,English,Book8,800,Publisher7,2021.01.26,70,7
+10,80,8,English,Book9,900,Publisher8,2021.01.27,80,6
+11,90,10,English,Book10,1000,Publisher9,2021.01.28,90,5
+12,100,11,English,Book11,1100,Publisher10,2021.01.29,100,4
+13,110,2,English,Book12,1200,Publisher11,2021.01.30,110,3
+14,120,3,English,Book13,1300,Publisher12,2021.01.31,120,2
+15,130,4,English,Book14,1400,Publisher13,2021.01.32,130,18
+16,140,5,English,Book15,1500,Publisher14,2021.01.33,140,18
