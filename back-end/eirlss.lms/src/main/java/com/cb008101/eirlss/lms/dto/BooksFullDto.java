@@ -14,21 +14,22 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BooksFullDto implements Serializable {
+public class BooksFullDto implements Serializable
+{
 
+    int copies;
+    int Dimensions;
+    long pages;
+    int readingAge;
     private Long id;
     private String name;
     private byte[] data;
     private double price;
-    int copies;
     private String language;
     private String publisher;
     private LocalDateTime publishingDate;
-    int Dimensions;
     private byte[] coverImage;
-    long pages;
     private String author;
-    int readingAge;
     private String category;
     private List<CommentDto> comments;
 }

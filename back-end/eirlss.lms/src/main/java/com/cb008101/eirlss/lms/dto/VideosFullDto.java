@@ -1,13 +1,14 @@
 package com.cb008101.eirlss.lms.dto;
 
 
-import com.cb008101.eirlss.lms.mvc.videocategory.VideoCategories;
-import com.cb008101.eirlss.lms.mvc.videocomment.VideoComments;
+import com.cb008101.eirlss.lms.videocategory.VideoCategories;
+import com.cb008101.eirlss.lms.videocomments.VideoComments;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,21 +16,22 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VideosFullDto {
+public class VideosFullDto implements Serializable
+{
 
+    int copies;
+    int Dimensions;
+    int watchingAge;
     private Long id;
     private String name;
     private byte[] data;
     private double price;
-    int copies;
     private String language;
     private String publisher;
     private LocalDateTime publishingDate;
-    int Dimensions;
     private String director;
     private String country;
     private long duration;
-    int watchingAge;
     private VideoCategories category;
     private List<VideoComments> comments;
 }

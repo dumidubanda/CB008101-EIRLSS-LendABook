@@ -1,27 +1,30 @@
 package com.cb008101.eirlss.lms.dto;
 
 
-import com.cb008101.eirlss.lms.mvc.users.Users;
-import com.cb008101.eirlss.lms.mvc.videoreservation.VideoReservations;
-import com.cb008101.eirlss.lms.mvc.video.Videos;
+import com.cb008101.eirlss.lms.users.Users;
+import com.cb008101.eirlss.lms.videoreservations.VideoReservations;
+import com.cb008101.eirlss.lms.videos.Videos;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class VideoReservationsDto {
+public class VideoReservationsDto implements Serializable
+{
     private Long id;
     private VideosDto video;
     private Users user;
     private LocalDateTime reservationDate;
 
-    public static VideoReservations build(VideoReservationsDto reservationsDto){
+    public static VideoReservations build(VideoReservationsDto reservationsDto)
+    {
         VideoReservations reservations = new VideoReservations();
         Videos video = new Videos();
         video.setId(reservationsDto.getVideo().getId());
@@ -30,7 +33,9 @@ public class VideoReservationsDto {
         reservations.setReservationDate(reservationsDto.getReservationDate());
         return reservations;
     }
-    public static VideoReservationsDto build(VideoReservations reservations){
+
+    public static VideoReservationsDto build(VideoReservations reservations)
+    {
         VideoReservationsDto reservationsDto = new VideoReservationsDto();
         reservationsDto.setId(reservations.getId());
         reservationsDto.setVideo(VideosDto.build(reservations));

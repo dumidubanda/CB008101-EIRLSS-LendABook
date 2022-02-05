@@ -1,8 +1,8 @@
 package com.cb008101.eirlss.lms.parents;
 
 
+import com.cb008101.eirlss.lms.users.Users;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.cb008101.eirlss.lms.mvc.users.Users;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @MappedSuperclass
-public class ReservationEntityParent {
+public class ReservationEntityParent
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

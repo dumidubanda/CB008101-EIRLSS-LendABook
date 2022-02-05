@@ -1,8 +1,8 @@
 package com.cb008101.eirlss.lms.books;
 
 
-import com.cb008101.eirlss.lms.mvc.bookcategory.BookCategories;
-import com.cb008101.eirlss.lms.mvc.bookcategory.BookCategoriesService;
+import com.cb008101.eirlss.lms.bookcategories.BookCategories;
+import com.cb008101.eirlss.lms.bookcategories.BookCategoriesService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

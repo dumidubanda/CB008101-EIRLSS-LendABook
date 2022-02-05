@@ -1,8 +1,8 @@
 package com.cb008101.eirlss.lms.videos;
 
 
-import com.cb008101.eirlss.lms.mvc.videocategory.VideoCategories;
-import com.cb008101.eirlss.lms.mvc.videocategory.VideoCategoriesRepository;
+import com.cb008101.eirlss.lms.videocategory.VideoCategories;
+import com.cb008101.eirlss.lms.videocategory.VideoCategoriesRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

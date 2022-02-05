@@ -1,17 +1,19 @@
 package com.cb008101.eirlss.lms.dto;
 
-import com.cb008101.eirlss.lms.mvc.plans.Plans;
+import com.cb008101.eirlss.lms.plans.Plans;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 import java.util.List;
 
 @Setter
 @Getter
 @NoArgsConstructor
-public class UsersDto {
+public class UsersDto implements Serializable
+{
 
     private Long id;
     private String firstName;

@@ -1,7 +1,7 @@
 package com.cb008101.eirlss.lms.parents;
 
 
-import com.cb008101.eirlss.lms.mvc.users.Users;
+import com.cb008101.eirlss.lms.users.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,14 +13,15 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @MappedSuperclass
-public class CommentEntityParent {
+public class CommentEntityParent
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Lob
-    @Column(length=512, nullable = false)
+    @Column(length = 512, nullable = false)
     private String comment;
 
     @Column(nullable = false)

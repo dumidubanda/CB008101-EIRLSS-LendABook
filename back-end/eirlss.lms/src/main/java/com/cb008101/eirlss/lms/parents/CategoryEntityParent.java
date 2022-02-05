@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Setter
 @Getter
 @MappedSuperclass
-public class CategoryEntityParent {
+public class CategoryEntityParent
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,27 +1,30 @@
 package com.cb008101.eirlss.lms.dto;
 
 
-import com.cb008101.eirlss.lms.mvc.bookreservation.BookReservations;
-import com.cb008101.eirlss.lms.mvc.book.Books;
-import com.cb008101.eirlss.lms.mvc.users.Users;
+import com.cb008101.eirlss.lms.bookreservations.BookReservations;
+import com.cb008101.eirlss.lms.books.Books;
+import com.cb008101.eirlss.lms.users.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookReservationsDto {
+public class BookReservationsDto implements Serializable
+{
     private Long id;
     private BooksDto book;
     private Users user;
     private LocalDateTime reservationDate;
 
-    public static BookReservations build(BookReservationsDto reservationsDto){
+    public static BookReservations build(BookReservationsDto reservationsDto)
+    {
         BookReservations reservations = new BookReservations();
         Books book = new Books();
         book.setId(reservationsDto.getBook().getId());
@@ -30,7 +33,9 @@ public class BookReservationsDto {
         reservations.setReservationDate(reservationsDto.getReservationDate());
         return reservations;
     }
-    public static BookReservationsDto build(BookReservations reservations){
+
+    public static BookReservationsDto build(BookReservations reservations)
+    {
         BookReservationsDto reservationsDto = new BookReservationsDto();
         reservationsDto.setId(reservations.getId());
         reservationsDto.setBook(BooksDto.build(reservations));

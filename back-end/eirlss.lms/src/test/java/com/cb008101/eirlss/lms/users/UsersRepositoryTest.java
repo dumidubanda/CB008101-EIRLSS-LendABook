@@ -1,15 +1,10 @@
 package com.cb008101.eirlss.lms.users;
 
-import com.cb008101.eirlss.lms.mvc.bookreservation.BookReservations;
-import com.cb008101.eirlss.lms.mvc.users.Users;
-import com.cb008101.eirlss.lms.mvc.users.UsersRepository;
-import org.apache.catalina.User;
+import com.cb008101.eirlss.lms.bookreservations.BookReservations;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Optional;
 
 import static com.cb008101.eirlss.lms.enums.UserStatusEnum.ACTIVE;
 import static org.assertj.core.api.Assertions.assertThat;
