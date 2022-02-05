@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 public class VideoReservations extends ReservationEntityParent
 {
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "video_id", nullable = false)
     private Videos video;
 }

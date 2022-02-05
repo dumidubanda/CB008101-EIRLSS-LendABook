@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
 public class BookReservations extends ReservationEntityParent
 {
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id", nullable = false)
     @JsonIgnore
     private Books book;
