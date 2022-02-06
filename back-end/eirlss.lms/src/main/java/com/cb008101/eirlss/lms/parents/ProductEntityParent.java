@@ -15,8 +15,10 @@ public class ProductEntityParent
 
     @Column
     int copies;
+
     @Column
     int Dimensions;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
